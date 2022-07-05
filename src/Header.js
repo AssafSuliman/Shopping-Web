@@ -1,5 +1,5 @@
-import UserOrLogin from './User-Login.js'
-import Cart from './Cart.js'
+import UserOrLogin from './Navbar-User.js'
+import Cart from './Navbar-Cart.js'
 function Header () {
     return(
     <header>

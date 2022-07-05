@@ -13,8 +13,8 @@
     font-size: 30px;
 }
 .navbar-brand:hover{
-    color: white;
-    opacity: 0.7;
+    color: rgb(197, 88, 119);
+    
 }
 .nav-link{
     margin: 0 15px;
