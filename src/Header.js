@@ -1,3 +1,5 @@
+import UserOrLogin from './User-Login.js'
+import Cart from './Cart.js'
 function Header () {
     return(
     <header>
@@ -28,12 +30,8 @@ function Header () {
               </form>
             </ul>
             <ul className="navbar-nav mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a className="nav-link" href="">User</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="">Cart</a>
-              </li>
+              <UserOrLogin></UserOrLogin>
+              <Cart></Cart>
             </ul>
           </div>
         </div>
