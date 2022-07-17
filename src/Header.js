@@ -2,6 +2,7 @@ import UserOrLogin from './Navbar-User.js'
 import Cart from './Navbar-Cart.js'
 function Header () {
     return(
+    
     <header>
       <nav className="navbar navbar-expand-lg fixed-top bg-dark">
         <div className="container-fluid">
@@ -37,6 +38,7 @@ function Header () {
         </div>
       </nav>
     </header>
+   
     )
 }
 
