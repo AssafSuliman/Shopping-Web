@@ -11,36 +11,52 @@ import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
 import ToggleButton from 'react-bootstrap/ToggleButton'
 import {useState} from 'react'
 import InputText from './InputText.js'
+import './Login.css'
+import {validate} from './common/validations.js'
 
 function Login () {
   const [loginData, setLoginData] = useState({
     username:{
       id:'1',
       type:'text',
-      name:'Username',
+      name:'username',
       placeholder:'Enter Username',
       value:'',
       validations:{
         required:true,
         minLength: 2,
       },
-      error:'',
-      possibleErrors:{emptyError:'Please enter username', lengthError: 'must contain atleast 2 characters'}
+      errors: []
     },
     password:{
       id:'2',
       type:'password',
-      name:'Password',
+      name:'password',
       placeholder:'Enter Password',
       value:'',
       validations:{
         required:true,
         minLength:8,
       },
-      error:'',
-      possibleErrors:{emptyError:'Please enter password', lengthError: 'must contain atleast 8 characters'}
+      errors: []
+  }})
+  function inputsHandler({target:{name,value}}){
+    loginData[name].value=value
+    loginData[name].errors = validate(name, value, loginData[name].validations)
+    setLoginData({...loginData})
+  }
 
-    }})
+  function validateForm() {
+    let notValid = false
+    for(let input in loginData){
+      loginData[input].errors = validate(input ,loginData[input].value, loginData[input].validations)
+      if(loginData[input].errors.length) {
+        notValid = true
+      }
+      setLoginData({...loginData})
+    }
+    return notValid
+  }
     return (
       <div id="login">
         <Header></Header>
@@ -48,7 +64,7 @@ function Login () {
           <Form className='form'>
             <h1>Login</h1>
             <div className='border'></div>
-            <InputText data={loginData}></InputText>
+            <InputText data={loginData} inputsHandler={inputsHandler}></InputText>
             <Button className='submit' variant="primary" type="submit">
               Login
             </Button>

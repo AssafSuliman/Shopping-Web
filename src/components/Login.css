@@ -1,0 +1,34 @@
+#main{
+    margin-top: 200px;
+    margin-bottom: 200px;
+    display: flex;
+    justify-content: center;
+   
+}
+.form{
+    
+    border:solid 1px gainsboro ;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+
+
+}
+.input{
+    margin-top:20px;
+    margin-bottom: 50px;
+}
+.input-group{
+    width:auto;
+    margin:0 50px
+}
+.submit{
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-bottom: 30px;
+}
+.border{
+    width:80%;
+    align-self: center;
+    margin-top: 10px;
+}

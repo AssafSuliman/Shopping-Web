@@ -1,0 +1,41 @@
+.navbar{
+    --bs-navbar-brand-hover-color:white
+}
+.navbar-nav{
+ --bs-nav-link-hover-color: white;
+}
+.navbar-collapse{
+    flex-grow: 0;
+}
+.navbar-brand{
+    color: white;
+    font-size: 30px;
+}
+.navbar-brand:hover{
+    color: rgb(197, 88, 119);
+    
+}
+.nav-link{
+    margin: 0 15px;
+    color: white;
+    font-size: large;
+    font-weight: bold;
+    font-family:Nirmala UI ;
+}
+.nav-link:hover{
+    color: white;
+    opacity: 0.7;
+}
+.dropdown-menu a{
+    color: black;
+}
+#searchBar{
+    width:400px;
+}
+
+#navbarTogglerDemo03{
+    justify-content: space-between;
+}
+.navbar-toggler-icon{
+    color:white
+}

@@ -1,14 +1,14 @@
 import 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import ProductPage from './ProductPage.js'
-import Homepage from './Homepage.js'
-import Login from './Login';
+import ProductPage from './components/ProductPage.js'
+import Homepage from './components/Homepage.js'
+import Login from './components/Login';
 import './App.css';
 
 function App() {
   return (
     
-      <Login></Login>
+    <Login></Login>
     
   );
 }

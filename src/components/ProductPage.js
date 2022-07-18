@@ -1,5 +1,6 @@
 import Header from './Header.js'
 import Footer from './Footer.js'
+import './ProductPage.css'
 function ProductPage () {
     return (
     <div>

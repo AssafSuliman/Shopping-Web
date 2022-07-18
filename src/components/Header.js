@@ -1,5 +1,6 @@
 import UserOrLogin from './Navbar-User.js'
 import Cart from './Navbar-Cart.js'
+import './Header.css'
 function Header () {
     return(
     

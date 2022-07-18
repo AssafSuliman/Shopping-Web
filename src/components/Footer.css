@@ -1,0 +1,15 @@
+footer{
+    height:100px;
+    background-color: #353333;
+    color: white;
+    justify-content: center;
+}
+footer .container{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+#aboutus{
+    font-size: 30px;
+}
