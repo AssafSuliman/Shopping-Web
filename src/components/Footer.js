@@ -1,12 +1,12 @@
 import { Container } from "react-bootstrap"
-import './Footer.css'
+import '../styles/Footer.css'
 
 function Footer () {
     return (
-    <footer className='bg-dark'>
+    <footer className='bg-secondary'>
       <Container fluid className='container'>
         <div id="aboutus">
-          <p>About us</p>
+          <p>All rights preserved</p>
         </div> 
       </Container>
     </footer>

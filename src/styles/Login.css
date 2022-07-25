@@ -5,16 +5,17 @@
     justify-content: center;
    
 }
-.form{
-    
+.loginForm{
+    width:50%;
     border:solid 1px gainsboro ;
     text-align: center;
     display: flex;
     flex-direction: column;
 
-
 }
-.input{
+.loginInput{
+    display: flex;
+    flex-direction: column;
     margin-top:20px;
     margin-bottom: 50px;
 }
@@ -22,7 +23,7 @@
     width:auto;
     margin:0 50px
 }
-.submit{
+.loginSubmit{
     margin-right: 20px;
     margin-left: 20px;
     margin-bottom: 30px;
@@ -31,4 +32,10 @@
     width:80%;
     align-self: center;
     margin-top: 10px;
+}
+.errors{
+    align-self: center;
+    display: block;
+    color:red;
+    margin:5px 0;
 }

@@ -1,7 +1,16 @@
 import UserOrLogin from './Navbar-User.js'
 import Cart from './Navbar-Cart.js'
-import './Header.css'
+import '../styles/Header.css'
+import {getCategories} from '../DAL/api.js'
+import {useState ,useEffect} from 'react'
 function Header () {
+    let [categories, setCategories] = useState([])
+    useEffect(() => 
+      async () => {
+        categories = await getCategories()
+        setCategories([...categories])
+      }  
+    , [])
     return(
     
     <header>
@@ -21,14 +30,17 @@ function Header () {
                   Category
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a className="dropdown-item" href="#">Action</a></li>
-                  <li><a className="dropdown-item" href="#">Another action</a></li>
-                  <li><a className="dropdown-item" href="#">Something else here</a></li>
+                  {categories.map(category => <li key={category.id}><a className="dropdown-item" href="#">{category.name}</a></li>)}
+                  {/* <li><a className="dropdown-item" href="#">Saws</a></li>
+                  <li><a className="dropdown-item" href="#">Cordless and Electric Tools</a></li>
+                  <li><a className="dropdown-item" href="#">Hand Tools</a></li>
+                  <li><a className="dropdown-item" href="#">Measuring Tools</a></li>
+                  <li><a className="dropdown-item" href="#">Gardening Tools</a></li> */}
                 </ul>
               </li>
               <form className="d-flex" role="search">
                 <input id='searchBar' className="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
-                <button className="btn btn-outline-success" type="submit">Search</button>
+                <button className="btn btn-outline-light" type="submit">Search</button>
               </form>
             </ul>
             <ul className="navbar-nav mb-2 mb-lg-0">

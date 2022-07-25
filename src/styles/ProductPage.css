@@ -1,14 +1,15 @@
-main .container{
-    margin:200px auto;
+#productPage .container{
+    margin-top:200px;
+    margin-bottom: 120px;
     height: 100%;
 }
-.container .col1 p{
+.productContainer .col1 p{
     text-align: center;
     margin:20px 0;
     font-size: 40px;
     
 }
-.container .col1 p span{
+.productContainer .col1 p span{
     color: rgb(202, 243, 121);
 }
 .line {

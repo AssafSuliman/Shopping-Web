@@ -1,4 +1,4 @@
-main{
+#homepage{
     display: flex;
     height: 100%;
     margin-top: 50px;
@@ -6,12 +6,13 @@ main{
     flex-wrap: wrap;
     
 }
-main h1{
+#homepage h1{
     text-align: center;
     width:100%;
     margin: 50px 0;
 }
 .item{
+    padding:20px;
     height:20%;
     border: solid 1px black;
     border-radius: 5px;
@@ -21,7 +22,7 @@ main h1{
     box-shadow: 3px 3px 3px rgb(203, 201, 201);
 
 }
-@media screen and (min-width: 1000px){
+/* @media screen and (min-width: 1000px){
     .item{
         width:20%;
     }
@@ -35,7 +36,7 @@ main h1{
     .item{
         width:45%
     }
-}
+} */
 .item p{
     text-align: center;
     font-size: large;
@@ -56,5 +57,32 @@ main h1{
 .item .price{
     font-size: 30px;
     font-weight: bold;
+}
+.card{
+    margin:20px 2.5%;
+    min-width:20%;
+}
+.cardButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.cardPrice{
+    text-align: center;
+}
+@media screen and (min-width: 1000px){
+    .card{
+        min-width:20%;
+    }
+}
+@media screen and  (min-width: 540px) and (max-width: 1000px) {
+    .card{
+        min-width:28.3%
+    }
+}
+@media screen and  (max-width: 540px){
+    .card{
+        min-width:45%
+    }
 }
 
