@@ -8,24 +8,29 @@ import Login from './components/Login';
 import FormData from './components/common/FormData.js';
 import Signup from './components/Signup.js'
 import UserArea from './components/UserArea'
-import {getProducts, getImagesByProductId, getImages, getProductByID} from './DAL/api.js'
+import {getProducts, getImages, getCategories} from './DAL/api.js'
 import { useState, useEffect} from 'react'
 import './App.css';
 
 function App() {
-  let [product, setProduct] = useState({})
+  let [products, setProducts] = useState([])
   let [images, setImages] = useState([])
-  useEffect(() => async () => {
-    product = await getProductByID(1)
-    images = await getImagesByProductId(1)
-    setProduct(product)
-    setImages([...images])
-  }, [])
+  let [orders, setOrders] = useState([])
+  let [categories, setCategories] = useState([])
+  useEffect(() => 
+    async () => {
+        products = await getProducts()
+        images = await getImages()
+        categories = await getCategories()
+        setCategories([...categories])
+        setProducts([...products])
+        setImages([...images])
+    }, [])
   return (
     <div>
       <Header></Header>
         {/* <ProductPage product={product} images={images}></ProductPage> */}
-        <Homepage></Homepage>
+        <Homepage products={products} images={images}></Homepage>
       <Footer></Footer>
     </div>
     
