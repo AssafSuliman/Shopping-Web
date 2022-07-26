@@ -2,6 +2,7 @@ import Header from './Header.js'
 import Footer from './Footer.js'
 import '../styles/ProductPage.css'
 function ProductPage ({product, images}) {
+  console.log(images)
     return (
     <div>
     
@@ -19,12 +20,12 @@ function ProductPage ({product, images}) {
                 <div className="carousel-item active">
                   <img src={images[0]} className="d-block w-100" alt="impact driver and drill"></img>
                 </div>
-                <div className="carousel-item">
-                  <img src={images[1]} className="d-block w-100" alt="drill"></img>
-                </div>
-                <div className="carousel-item">
+                {images.slice(1,images.length).map((image, index) => <div key={index} className="carousel-item">
+                  <img src={image} className="d-block w-100" alt="drill"></img>
+                </div>)}
+                {/* <div className="carousel-item">
                   <img src={images[2]} className="d-block w-100" alt="impact-driver"></img>
-                </div>
+                </div> */}
               </div>
               <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>

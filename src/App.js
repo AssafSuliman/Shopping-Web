@@ -16,15 +16,16 @@ function App() {
   let [product, setProduct] = useState({})
   let [images, setImages] = useState([])
   useEffect(() => async () => {
-    product = await getProductByID(2)
-    images = await getImagesByProductId(2)
+    product = await getProductByID(1)
+    images = await getImagesByProductId(1)
     setProduct(product)
     setImages([...images])
   }, [])
   return (
     <div>
       <Header></Header>
-        <ProductPage product={product} images={images}></ProductPage>
+        {/* <ProductPage product={product} images={images}></ProductPage> */}
+        <Homepage></Homepage>
       <Footer></Footer>
     </div>
     
