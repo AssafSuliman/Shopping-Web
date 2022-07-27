@@ -16,13 +16,13 @@ function App() {
   let [products, setProducts] = useState([])
   let [images, setImages] = useState([])
   let [orders, setOrders] = useState([])
-  let [categories, setCategories] = useState([])
+  let [categories, setCategories] = useState({allCategories:[], selectedCategory:undefined})
   useEffect(() => 
     async () => {
         products = await getProducts()
         images = await getImages()
-        categories = await getCategories()
-        setCategories([...categories])
+        categories.allCategories = await getCategories()
+        setCategories({...categories})
         setProducts([...products])
         setImages([...images])
     }, [])
@@ -30,7 +30,11 @@ function App() {
     <div>
       <Header></Header>
         {/* <ProductPage product={product} images={images}></ProductPage> */}
-        <Homepage products={products} images={images}></Homepage>
+        {/* <Homepage products={products} images={images} 
+        categories={categories} setCategories={setCategories}></Homepage> */}
+        <UserArea user={{password:'123456', firstName: 'Assaf', lastName:'Suliman',
+        email:'Asafaaaad2@gmail.com', address:'Moshav Ahihud Number 44',
+        birthday:'01/03/1996'}}></UserArea>
       <Footer></Footer>
     </div>
     

@@ -38,6 +38,30 @@ import {validate} from './validations.js'
           },
           errors: []
         },
+        firstName:{
+          id:'1',
+          type:'text',
+          name:'First Name',
+          placeholder:'Enter First Name',
+          value:'',
+          validations:{
+            required:true,
+            minLength: 2,
+          },
+          errors: []
+        },
+        lastName:{
+          id:'1',
+          type:'text',
+          name:'Last Name',
+          placeholder:'Enter Last Name',
+          value:'',
+          validations:{
+            required:true,
+            minLength: 2,
+          },
+          errors: []
+        },
         email:{
           id:'4',
           type:'email',
@@ -97,6 +121,8 @@ import {validate} from './validations.js'
       }
       else data[name].errors = validate(name, value, data[name].validations)
       setData({...data})
+      if(data[name].errors.length > 0) return false
+      return true
   }
     
   export function validateForm(setData, data) {
