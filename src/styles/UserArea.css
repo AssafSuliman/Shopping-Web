@@ -1,6 +1,40 @@
 #userArea{
-    margin-top: 100px;
+    margin-top: 150px;
+    margin-bottom: 150px;
+    background-color: rgb(246, 245, 245);
+    
+    
 }
 #accountTitle{
-    text-align: center;
+    margin-bottom: 70px;
+}
+#ordersImgDiv{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+#accountContent{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.details{
+    display: flex;
+    margin-left: 40px;
+    margin-right: 40px;
+    justify-content: space-between;
+    align-items: center;
+    
+}#orders:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}
+#editInput{
+    padding:20px;
+    height:fit-content
+}
+#accountOptions{
+    display: flex;
+    flex-direction: column;
 }
