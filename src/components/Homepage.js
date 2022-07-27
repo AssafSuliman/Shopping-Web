@@ -6,22 +6,15 @@ import {getProducts, getImagesByProductId, getImages} from '../DAL/api.js'
 import ProductCard from './ProductCard.js'
 import { useState, useEffect} from 'react'
 
-function Homepage () {
-    let [products, setProducts] = useState([])
-    let [images, setImages] = useState([])
-    useEffect(() => 
-        async () => {
-            products = await getProducts()
-            images = await getImages()
-            setProducts([...products])
-            setImages([...images])
-        }, [])
+function Homepage ({products, images, category}) {
+    products.sort((a, b) => b.unitsSold - a.unitsSold)
     
     return (
     <div>
         <main id='homepage'>
             <h1>Best Sellers</h1>
-            {products.map(product => <ProductCard product={product} 
+            {products.slice(0,3).map(product => 
+            <ProductCard product={product} 
             image={images.find(image => image.productId === product.id).imageSrc}></ProductCard>)}
             
             

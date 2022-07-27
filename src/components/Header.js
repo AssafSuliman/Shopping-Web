@@ -3,6 +3,7 @@ import Cart from './Navbar-Cart.js'
 import '../styles/Header.css'
 import {getCategories} from '../DAL/api.js'
 import {useState ,useEffect} from 'react'
+import Homepage from './Homepage.js'
 function Header () {
     let [categories, setCategories] = useState([])
     useEffect(() => 
@@ -30,7 +31,8 @@ function Header () {
                   Category
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  {categories.map(category => <li key={category.id}><a className="dropdown-item" href="#">{category.name}</a></li>)}
+                  {categories.map(category => <li key={category.id}><a className="dropdown-item" href="#"
+                  onClick={<Homepage></Homepage>}>{category.name}</a></li>)}
                   {/* <li><a className="dropdown-item" href="#">Saws</a></li>
                   <li><a className="dropdown-item" href="#">Cordless and Electric Tools</a></li>
                   <li><a className="dropdown-item" href="#">Hand Tools</a></li>

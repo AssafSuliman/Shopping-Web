@@ -2,10 +2,8 @@ import Header from './Header.js'
 import Footer from './Footer.js'
 import '../styles/ProductPage.css'
 function ProductPage ({product, images}) {
-  console.log(images)
     return (
     <div>
-    
     <main id='productPage'>
       <div className="container productContainer">
         <div className="row">
@@ -21,8 +19,7 @@ function ProductPage ({product, images}) {
                   <img src={images[0]} className="d-block w-100" alt="impact driver and drill"></img>
                 </div>
                 {images.slice(1,images.length).map((image, index) => <div key={index} className="carousel-item">
-                  <img src={image} className="d-block w-100" alt="drill"></img>
-                </div>)}
+                  <img src={image} className="d-block w-100" alt="drill"></img></div>)}
                 {/* <div className="carousel-item">
                   <img src={images[2]} className="d-block w-100" alt="impact-driver"></img>
                 </div> */}
