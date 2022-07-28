@@ -8,7 +8,8 @@ import Login from './components/Login';
 import FormData from './components/common/FormData.js';
 import Signup from './components/Signup.js'
 import UserArea from './components/UserArea'
-import {getProducts, getImages, getCategories} from './DAL/api.js'
+import Orders from './components/Orders'
+import {getProducts, getImages, getCategories, getCustomer, getOrdersById} from './DAL/api.js'
 import { useState, useEffect} from 'react'
 import './App.css';
 
@@ -17,14 +18,19 @@ function App() {
   let [images, setImages] = useState([])
   let [orders, setOrders] = useState([])
   let [categories, setCategories] = useState({allCategories:[], selectedCategory:undefined})
+  let [customer, setCustomer] = useState({})
   useEffect(() => 
     async () => {
         products = await getProducts()
         images = await getImages()
         categories.allCategories = await getCategories()
+        customer = await getCustomer()
+        orders = await getOrdersById(1)
         setCategories({...categories})
         setProducts([...products])
         setImages([...images])
+        setCustomer({...customer})
+        setOrders([...orders])
     }, [])
   return (
     <div>
@@ -32,9 +38,8 @@ function App() {
         {/* <ProductPage product={product} images={images}></ProductPage> */}
         {/* <Homepage products={products} images={images} 
         categories={categories} setCategories={setCategories}></Homepage> */}
-        <UserArea user={{password:'123456', firstName: 'Assaf', lastName:'Suliman',
-        email:'Asafaaaad2@gmail.com', address:'Moshav Ahihud Number 44',
-        birthday:'01/03/1996'}}></UserArea>
+        <UserArea user={customer}></UserArea>
+        {/* <Orders orders={orders}></Orders> */}
       <Footer></Footer>
     </div>
     

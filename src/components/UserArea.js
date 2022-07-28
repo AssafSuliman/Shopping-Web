@@ -19,6 +19,19 @@ function UserArea ({user}) {
       editData[key].value = user[key]
       setEditData({...editData})})
   }, []) */
+
+  const createDetails = () => {
+    return (
+    Object.keys(user).map(key => key != 'username'?<ListGroup.Item className='details'>{`${editData[key].name}: `}
+    <span>{key != 'password'? user[key]: '********'}</span>
+    <Button onClick={() => editDetails(key)}>Update</Button>
+    </ListGroup.Item>:undefined))
+  }
+
+  const updateValue = (e) => {
+    setEditInput({...editInput, value:e.target.value})
+  }
+
   const editDetails = (key) => {
     if(!editInput)
     setEditInput({name:key, input:editData[key].name,
@@ -35,34 +48,27 @@ function UserArea ({user}) {
             <Container id='userArea'>
                 <h1 id='accountTitle'>Your Account</h1>
               <div id='accountContent'>
-                <Card style={{minWidth:'500px', height:'fit-content'}}>
+                <Card className='accountElements' style={{width:'500px', height:'fit-content'}}>
                   <Card.Body>
                     <Card.Title>Your Details</Card.Title>
                   </Card.Body>
                   
                   <ListGroup className="list-group-flush">
-                    {Object.keys(user).map(key => <ListGroup.Item className='details'>{`${editData[key].name}: `}
-                    <span>{key != 'password'? user[key]: '********'}</span>
-                    <Button onClick={() => editDetails(key)}>Update</Button>
-                    </ListGroup.Item>)}
+                    <ListGroup.Item id='username'>Username:<span style={{marginLeft:'95px'}}>{user.username}</span></ListGroup.Item>
+                    {createDetails()}
                   </ListGroup>
                 
                 {editInput? <Card id='editInput'><Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>{`New ${editInput.input}`}</Form.Label>
-                  <Form.Control onBlur={(e) => setEditInput({...editInput, value:e.target.value})}
-                    defaultValue={editInput.value} type={editInput.type}/>
+                  <Form.Control onBlur={updateValue} defaultValue={editInput.value} type={editInput.type}/>
                   <span style={{display:'block'}}>{editData[editInput.name].errors[0]}</span>
-                  {/* {editInput.type === 'password' || editInput.type === 'email'?
-                    <div style={{marginTop:'10px'}}>
-                    <Form.Label>{`Confirm ${editInput.input}`}</Form.Label>
-                    <Form.Control type={editInput.type}/></div>: ''} */}
                   <Button onClick={saveDetails} style={{marginTop:'10px'}}>Save</Button>
                 </Form.Group></Card>: undefined}
                 </Card>
               
               <div className='accountOptions'>
                 {accountOptions.map(option =>
-                  <div id='orders' className="card mb-3" style={{width: "400px", height: '150px'}}>
+                  <div className="card mb-3 accountElements orders">
                   <div className="row g-0">
                     <div id='ordersImgDiv' className="col-md-2">
                       <img src={option.img} className="img-fluid rounded-start" alt="..."/>

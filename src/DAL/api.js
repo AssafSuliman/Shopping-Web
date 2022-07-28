@@ -60,9 +60,13 @@ const images = [{id:1, productId: 1, imageSrc: 'https://th.bing.com/th/id/OIP.cl
 {id:14, productId: 6, imageSrc: 'https://img.btdmp.com/10297/10297828/products/1648623724c1b62b6d8d.png'},
 {id:15, productId: 6, imageSrc: 'https://images-na.ssl-images-amazon.com/images/I/61B+8nhgWGL._UL500_.jpg'}]
 
-const orders = [{id: 1 , productId: 1}, {id:1, productId: 2}, {id:1, productId: 3},
-{id: 2, productId: 2}, {id: 2, productId:3},
+const orders = [{id: 1 , productId: 1, customerId: 1}, {id:1, productId: 2, customerId:1}, {id:1, productId: 3},
+{id: 2, productId: 2}, {id: 2, productId:3, customerId: 1},
 {id: 3, productId: 4}, {id: 3, productId:2}, {id: 3, productId: 6}]
+
+const customers = [{id:1, username:'Asaf45', password:'123456', firstName: 'Assaf', lastName:'Suliman',
+email:'Asafaaaad2@gmail.com', address:'Moshav Ahihud Number 44',
+birthday:'01/03/1996'}]
 
 export const getCategories = () => {
     //fetch categories from server
@@ -113,10 +117,28 @@ export const getImagesByProductId = (getProductId) => {
         resolve(filteredImages)
     })
 }
-export const getBestSellers = (bestSellers) => {
+export const getBestSellers = () => {
     return new Promise((resolve, reject) => {
+    setTimeout(() => resolve(), 1000)
+    })
+}
+export const getOrdersById = (customerId) => {
+    return new Promise((resolve, reject) => {
+        const filteredOrders = []
+        for(let order of orders){
+            if(order.customerId === customerId){
+                filteredOrders.push(order)
+            }
+        }
+        resolve(filteredOrders)
+    })
 
-        setTimeout(() => resolve(bestSellers), 1000)
+}
+export const getCustomer = () => {
+    return new Promise((resolve, reject) => {
+        delete customers[0].id
+        console.log(customers[0])
+        resolve(customers[0])
     })
 }
 
