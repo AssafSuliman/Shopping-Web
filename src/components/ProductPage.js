@@ -1,7 +1,30 @@
 import Header from './Header.js'
 import Footer from './Footer.js'
 import '../styles/ProductPage.css'
-function ProductPage ({product, images}) {
+import { useLocation, useParams } from 'react-router-dom'
+import {getImagesByProductId, getProductByID} from '../DAL/api.js'
+import { useState, useEffect} from 'react'
+import { UseParams } from 'react-router-dom'
+
+function ProductPage () {
+  /* const location = useLocation()
+  const product = location.state */
+  let {productId} = useParams()
+  productId = Number(productId)
+  let [product, setProduct] = useState({})
+  let [images, setImages] = useState([])
+  
+  async function getProductImages () {
+    product = await getProductByID(productId)
+    images = await getImagesByProductId(productId)
+    setProduct({...product})
+    setImages([...images])
+  }
+
+  useEffect(() => {
+    getProductImages()
+  },[])
+
     return (
     <div>
     <main id='productPage'>
@@ -41,14 +64,14 @@ function ProductPage ({product, images}) {
               <p className="card-text">{product.description}</p>
               <p className="card-text"><small className="text-muted">cannot be shipped</small></p>
               <div className="line"></div>
-              <h5>{`Price: ${product.price}`}</h5>
+              <h5>{`Price: ${product.price}$`}</h5>
               <button type="button" className="btn btn-primary">Buy now!</button>
               <button type="button" className="btn btn-info">Add to cart</button>
             </div>
           </div>
       </div>
     </main>
-    
+    <Footer></Footer>
     </div>
     )}
 

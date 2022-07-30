@@ -11,6 +11,7 @@ import UserArea from './components/UserArea'
 import Orders from './components/Orders'
 import {getProducts, getImages, getCategories, getCustomer, getOrdersById} from './DAL/api.js'
 import { useState, useEffect} from 'react'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 
 function App() {
@@ -34,13 +35,12 @@ function App() {
     }, [])
   return (
     <div>
-      <Header></Header>
-        {/* <ProductPage product={product} images={images}></ProductPage> */}
-        {/* <Homepage products={products} images={images} 
-        categories={categories} setCategories={setCategories}></Homepage> */}
+      {/* <Header></Header>
+        <ProductPage product={product} images={images}></ProductPage>
+        <Homepage products={products} images={images} ></Homepage>
         <UserArea user={customer}></UserArea>
-        {/* <Orders orders={orders}></Orders> */}
-      <Footer></Footer>
+        <Orders orders={orders}></Orders>
+      <Footer></Footer> */}
     </div>
     
   );
