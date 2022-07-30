@@ -137,7 +137,6 @@ export const getOrdersById = (customerId) => {
 export const getCustomer = () => {
     return new Promise((resolve, reject) => {
         delete customers[0].id
-        console.log(customers[0])
         resolve(customers[0])
     })
 }

@@ -58,9 +58,29 @@
     font-size: 30px;
     font-weight: bold;
 }
-.card{
+.productCard{
     margin:20px 2.5%;
-    min-width:20%;
+    width:20%;
+}
+@media screen and (min-width: 1900px){
+    .productCard{
+        width:20%;
+    }
+}
+@media screen and  (min-width: 1300px) and (max-width: 1900px) {
+    .productCard{
+        width:28.3%
+    }
+}
+@media screen and  (min-width: 800px) and (max-width: 1300px){
+    .productCard{
+        width:45%
+    }
+}
+@media screen and (max-width: 800px){
+    .productCard{
+        width:95%
+    }
 }
 .cardButtons{
     display: flex;
@@ -69,20 +89,5 @@
 }
 .cardPrice{
     text-align: center;
-}
-@media screen and (min-width: 1000px){
-    .card{
-        min-width:20%;
-    }
-}
-@media screen and  (min-width: 540px) and (max-width: 1000px) {
-    .card{
-        min-width:28.3%
-    }
-}
-@media screen and  (max-width: 540px){
-    .card{
-        min-width:45%
-    }
 }
 

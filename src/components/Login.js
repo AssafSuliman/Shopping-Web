@@ -14,7 +14,6 @@ function Login () {
   useState({'username': formData.username, 'password': formData.password})
     return (
       <div id="login">
-        <Header></Header>
         <Container id="main">
           <Form className='loginForm'>
             <h1>Login</h1>
