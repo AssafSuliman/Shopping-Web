@@ -10,7 +10,6 @@ import { useState, useEffect} from 'react'
 function Homepage () {
   let [products, setProducts] = useState([])
   let [images, setImages] = useState([])
-  products.sort((a, b) => b.unitsSold - a.unitsSold)
   
   async function getData () {
     products = await getProducts()
@@ -28,7 +27,7 @@ function Homepage () {
             <h1>Best Sellers</h1>
             {products.map(product => 
             <ProductCard key={product.id} product={product} 
-              image={images.find(image => image.productId === product.id).imageSrc}>
+              image={images.find(image => image.product_id === product.product_id).image_src}>
             </ProductCard>)}
         </main>
         <Footer></Footer>
