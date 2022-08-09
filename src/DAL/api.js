@@ -75,10 +75,15 @@ export const getCategories = () => {
         setTimeout(() => resolve(categories), 1000)
     })    
 }
-export const getProducts = () => {
+/* export const getProducts = () => {
     return new Promise((resolve, reject) => {
         setTimeout(() => resolve(products), 1000)
     })
+} */
+export const getProducts = async () => {
+    const response = await fetch(`http://localhost:3200/api/bestsellers`)
+    const data = await response.json()
+    return data
 }
 export const getProductByID = (productId) => {
     return new Promise((resolve, reject) => {
@@ -90,10 +95,10 @@ export const getProductsByCategory = (categoryId) => {
         setTimeout(() => resolve())
     })
 }
-export const getImages = () => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => resolve(images), 1000)
-    })
+export const getImages = async () => {
+    const response = await fetch(`http://localhost:3200/api/bestsellers/images`)
+    const data = await response.json()
+    return data
 }
 export const getImagesByCategoryId = (getCategoryId) => {
     return new Promise((resolve, reject) => {

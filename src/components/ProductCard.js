@@ -19,7 +19,7 @@ function ProductCard ({product, image}) {
                     <Button variant="primary">Buy now</Button>
                     <Button className='addToCart' variant="warning">Add to cart</Button>
                     <Link className='btn btn-success addToCart' variant='success' 
-                    to={`products/${product.id}`} state={product}>More Details</Link>
+                    to={`products/${product.product_id}`} state={product}>More Details</Link>
                     {/* <Button className='addToCart' variant="success">More Details</Button> */}
                 </div>
             </Card.Body>
