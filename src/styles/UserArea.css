@@ -51,3 +51,8 @@
         width:35%
     }
 }
+
+.linkInUser{
+    color: black;
+    text-decoration: dashed;
+}

@@ -26,7 +26,7 @@ function Homepage () {
         <main id='homepage'>
             <h1>Best Sellers</h1>
             {products.map(product => 
-            <ProductCard key={product.id} product={product} 
+            <ProductCard key={product.product_id} product={product} 
               image={images.find(image => image.product_id === product.product_id).image_src}>
             </ProductCard>)}
         </main>

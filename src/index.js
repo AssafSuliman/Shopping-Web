@@ -11,6 +11,7 @@ import Login from './components/Login';
 import Signup from './components/Signup.js'
 import UserArea from './components/UserArea'
 import Orders from './components/Orders'
+import Cart from './components/Cart';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,6 +20,8 @@ root.render(
       <Route path='/' element={<Header />}>
         <Route index  element={<Homepage />} />
         <Route path='products/:productId' element={<ProductPage/>} />
+        <Route path='orders' element={<Orders/>} />
+        <Route path='cart' element={<Cart/>} />
         <Route path='user' element={<UserArea/>} />
         <Route path='login' element={<Login />} />
         <Route path='signup' element={<Signup />} />

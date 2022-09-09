@@ -1,6 +1,7 @@
 import { Outlet, Link } from "react-router-dom";
+import { logOut } from "../DAL/api";
 
-function LoggedInDependencies ({customer}) {
+function LoggedInDependencies ({customer, setCustomer}) {
     return (
         <>
         {!customer?
@@ -17,10 +18,13 @@ function LoggedInDependencies ({customer}) {
             <Link to='user' className="nav-link">User</Link>
         </li>
         <li className="nav-item">
-            <a className="nav-link" href="">Cart</a>
+            <Link to='cart' className="nav-link">Cart</Link>
         </li>
         <li className="nav-item">
-            <a id="first" className="nav-link" href="">Whishlist</a>
+            <a id="first" className="nav-link" href="">Wishlist</a>
+        </li>
+        <li className="nav-item">
+            <a id="logout" className="nav-link" onClick={logOut}>Logout</a>
         </li>
         </>}
         </>

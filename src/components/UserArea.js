@@ -7,6 +7,7 @@ import InputText from './InputText.js'
 import {formData, inputsHandler, validateForm} from './common/FormData.js'
 import {getCustomer} from '../DAL/api.js'
 import { toHaveErrorMessage } from '@testing-library/jest-dom/dist/matchers.js'
+import { Link } from 'react-router-dom'
 
 function UserArea () {
   
@@ -14,23 +15,23 @@ function UserArea () {
   const [editData, setEditData] = useState(formData)
   const [editInput, setEditInput] = useState(undefined)
   const accountOptions = [
-    {img:'ProductPageImgs/orders.png' ,name:'Your Orders', description:'Review all your previous orders'},
-    {img:'ProductPageImgs/cart.png', name:'Your Cart', description:'Go to your cart in order to make an order'},
-    {img:'ProductPageImgs/wishlist.png', name:'Your Wishlist', description:'Check if your desired products are available!'}]
+    {img:'ProductPageImgs/orders.png' ,name:'Your Orders', description:'Review all your previous orders', to:'/orders'},
+    {img:'ProductPageImgs/cart.png', name:'Your Cart', description:'Go to your cart in order to make an order', to:'/cart'},
+    {img:'ProductPageImgs/wishlist.png', name:'Your Wishlist', description:'Check if your desired products are available!', to:'/wishlist'}]
   
   async function getUser () {
-    console.log('heyyyyyy')
     user = await getCustomer()
+    console.log(user);
     setUser({...user})
   }
 
   useEffect(() => {
     getUser()
   }, [])
-
+  console.log(editData);
   const createDetails = () => {
     return (
-    Object.keys(user).map((detail, index) => detail != 'username'?
+    Object.keys(user).map((detail, index) => detail != 'user_name'?
     <ListGroup.Item key={index} className='details'>{`${editData[detail].name}: `}
       <span>{detail != 'password'? user[detail]: '********'}</span>
       <Button onClick={() => editDetails(detail)}>Update</Button>
@@ -65,7 +66,7 @@ function UserArea () {
                   </Card.Body>
                   
                   <ListGroup className="list-group-flush">
-                    <ListGroup.Item id='usernameDetail'>Username:<span style={{marginLeft:'95px'}}>{user.username}</span></ListGroup.Item>
+                    <ListGroup.Item id='usernameDetail'>Username:<span style={{marginLeft:'95px'}}>{user.user_name}</span></ListGroup.Item>
                     {createDetails()}
                   </ListGroup>
                 
@@ -74,13 +75,15 @@ function UserArea () {
                     <Form.Control onBlur={updateValue} defaultValue={editInput.value} type={editInput.type}/>
                     <span style={{display:'block'}}>{editData[editInput.name].errors[0]}</span>
                     <Button onClick={saveDetails} style={{marginTop:'10px'}}>Save</Button>
+                    <Button onClick={() => setEditInput(false)} 
+                    style={{marginTop:'10px', marginLeft:'30px'}} className='btn btn-danger'>Cancel</Button>
                     </Form.Group>
                   </Card>: undefined}
                 </Card>
               
               <div className='accountOptions'>
                 {accountOptions.map((option, index) => 
-                  <div key={index} className="card mb-3 accountElements orders">
+                  <Link to={option.to} key={index} className="linkInUser card mb-3 accountElements orders">
                   <div className="row g-0">
                     <div id='ordersImgDiv' className="col-md-2">
                       <img src={option.img} className="img-fluid rounded-start" alt="..."/>
@@ -93,7 +96,7 @@ function UserArea () {
                       </div>
                     </div>
                   </div>
-                </div>)}
+                </Link>)}
         
               </div>
             </div>

@@ -13,6 +13,7 @@ function ProductPage () {
   productId = Number(productId)
   let [product, setProduct] = useState({})
   let [images, setImages] = useState([])
+  console.log(images);
   
   async function getProductImages () {
     product = await getProductByID(productId)

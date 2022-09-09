@@ -4,7 +4,7 @@ const categories = [{id: 1, name: 'Work Tables'},
 {id:4, name: 'Measuring Tools'},
 {id:5, name: 'Gardening Tools'}]
 
-const products = [{id: 1, categoryId: 2, productName:`Bosch Circular SAW 9" GKS235`,
+export const products = [{id: 1, categoryId: 2, productName:`Bosch Circular SAW 9" GKS235`,
 description: `Two sights for increased cutting precision.
 Base can be tilted up to 48°; sturdy, steel base plate with dual attachment 
 Optimised chip removal system.`,
@@ -75,13 +75,62 @@ export const getCategories = () => {
         setTimeout(() => resolve(categories), 1000)
     })    
 }
-/* export const getProducts = () => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => resolve(products), 1000)
+
+export const signup = async (customer) => {
+    await fetch('http://localhost:3000/customers/signup', {
+        credentials: 'include',
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(customer)
+        })
+}
+
+export const login = async (details) => {
+    const response = await fetch('http://localhost:3000/customers/login', {
+        credentials: 'include',
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(details)
+        })
+    const validated = await response.json()
+    return validated
+}
+
+export const logOut = async () => {
+    await fetch('http://localhost:3000/customers/logout', {credentials:'include'})
+    window.location.reload()
+
+}
+
+export const checkCustomer = async () => {
+    const response = await fetch("http://localhost:3000/customers/logged", {credentials:'include'})
+    const boolean = await response.json()
+    return boolean
+}
+
+export const getCart = async () => {
+    const response = await fetch("http://localhost:3000/cart", {credentials:'include'})
+    const cart = await response.json()
+    return cart
+}
+
+export const addToCart = async (product_id) => {
+    const response = await fetch(`http://localhost:3000/cart/${product_id}`, {
+        credentials:'include',
+        method:'PUT',
     })
-} */
+}
+
+export const removeFromCart = async (productId) => {
+    await fetch(`http://localhost:3000/cart/${productId}`, {
+      credentials: 'include',
+      method: "DELETE"
+    })
+    return 
+}
+
 export const getProducts = async () => {
-    const response = await fetch(`http://localhost:3200/api/bestsellers`)
+    const response = await fetch(`http://localhost:3000/products/best-sellers`)
     const data = await response.json()
     return data
 }
@@ -96,7 +145,7 @@ export const getProductsByCategory = (categoryId) => {
     })
 }
 export const getImages = async () => {
-    const response = await fetch(`http://localhost:3200/api/bestsellers/images`)
+    const response = await fetch(`http://localhost:3000/images/best-sellers`)
     const data = await response.json()
     return data
 }
@@ -139,11 +188,11 @@ export const getOrdersById = (customerId) => {
     })
 
 }
-export const getCustomer = () => {
-    return new Promise((resolve, reject) => {
-        delete customers[0].id
-        resolve(customers[0])
-    })
+export const getCustomer = async () => {
+    const response = await fetch(`http://localhost:3000/customers`, {credentials:'include'})
+    const customer = await response.json()
+    return customer
+
 }
 
 

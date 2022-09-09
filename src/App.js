@@ -14,13 +14,15 @@ import { useState, useEffect} from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 
+
 function App() {
-  let [products, setProducts] = useState([])
+  
+ /*  let [products, setProducts] = useState([])
   let [images, setImages] = useState([])
   let [orders, setOrders] = useState([])
   let [categories, setCategories] = useState({allCategories:[], selectedCategory:undefined})
-  let [customer, setCustomer] = useState({})
-  useEffect(() => 
+  let [customer, setCustomer] = useState({}) */
+  /* useEffect(() => 
     async () => {
         products = await getProducts()
         images = await getImages()
@@ -32,7 +34,7 @@ function App() {
         setImages([...images])
         setCustomer({...customer})
         setOrders([...orders])
-    }, [])
+    }, []) */
   return (
     <div>
       {/* <Header></Header>
