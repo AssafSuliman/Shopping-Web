@@ -4,14 +4,35 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/esm/Button'
 import Container from 'react-bootstrap/Container'
 import {useState} from 'react'
+import { useLocation , useNavigate} from 'react-router-dom'
 import InputText from './InputText.js'
 import '../styles/Login.css'
 import {validate} from './common/validations.js'
 import {formData, inputsHandler, validateForm} from './common/FormData.js'
+import { login } from "../DAL/api"
 
 function Login () {
+  const navigate = useNavigate()
   const [loginData, setLoginData] = 
-  useState({'username': formData.username, 'password': formData.password})
+  useState({'user_name': {...formData.user_name}, 'password': {...formData.password}})
+
+  const postCustomer = async (e) => {
+    e.preventDefault()
+    if(!validateForm(setLoginData, loginData)){
+      const details = {
+        'user_name':loginData.user_name.value,
+        'password':loginData.password.value
+      }
+      const response = await login(details)
+      console.log(response);
+      if(response){
+        navigate('/')
+        window.location.reload()
+      }
+      else alert('User not exist')
+
+    }
+  }
     return (
       <div id="login">
         <Container id="main">
@@ -20,7 +41,8 @@ function Login () {
             <div className='border'></div>
             <InputText setData={setLoginData} data={loginData}
             inputsHandler={inputsHandler}></InputText>
-            <Button className='loginSubmit' variant="primary" type="submit">
+            <Button className='loginSubmit' variant="primary" type="submit"
+            onClick={postCustomer}>
               Login
             </Button>
             <a href=''>forgot password</a>

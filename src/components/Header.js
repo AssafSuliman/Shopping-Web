@@ -1,26 +1,41 @@
 import LoggedInDependencies from './LoggedInDependencies.js'
 import '../styles/Header.css'
-import {getCategories, getCustomer} from '../DAL/api.js'
-import {useState ,useEffect} from 'react'
+import {getCategories, getCustomer, checkCustomer} from '../DAL/api.js'
+import {useState ,useEffect, CSSProperties} from 'react'
 import Homepage from './Homepage.js'
 import { Outlet, Link } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
+
+const override = {
+  display: "block",
+  margin: "350px auto",
+  borderColor: "red",
+};
+
 function Header () {
     let [categories, setCategories] = useState([])
     let [customer, setCustomer] = useState()
+    let [loading, setLoading] = useState(true);
     
     async function getData () {
+      customer = await checkCustomer()
       categories = await getCategories()
-      customer = await getCustomer()
+      if(customer != 'undefined'){
+        setLoading(false)
+      }
+
+      setCustomer(customer)
       setCategories([...categories])
-      setCustomer({...customer})
     } 
 
     useEffect(() => {
       getData()
     }, [])
-
+    //console.log(customer);
     return(
-    <header>
+      <header>
+      {loading? <ClipLoader color={'grey'} cssOverride={override} size={150} />:
+      <>
       <nav className="navbar navbar-expand-lg fixed-top bg-dark">
         <div className="container-fluid">
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,9 +64,11 @@ function Header () {
           </div>
         </div>
       </nav>
-      {<Outlet />}
+    
+    <Outlet />
+    </>
+  }
     </header>
-   
     )
 }
 

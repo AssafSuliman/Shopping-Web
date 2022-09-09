@@ -1,11 +1,16 @@
 import { Button, Card } from 'react-bootstrap'
-import {getImagesByProductId} from '../DAL/api.js'
+import {addToCart, getImagesByProductId} from '../DAL/api.js'
 import {useState ,useEffect} from 'react'
 import '../styles/ProductCard.css'
 import {  Link } from "react-router-dom";
 
+function ProductCard ({product, image}) {;
 
-function ProductCard ({product, image}) {
+    const addProductToCard = async (product) => {
+        console.log(product);
+        await addToCart(product.product_id)
+    }
+
     return (
         <Card className='productCard'>
             <Card.Img className='cardImg' variant="top" src={image}/>
@@ -17,7 +22,7 @@ function ProductCard ({product, image}) {
                     <h5 className='cardPrice'>{`Price: ${product.price}$`}</h5>
                 <div className='cardButtons'>
                     <Button variant="primary">Buy now</Button>
-                    <Button className='addToCart' variant="warning">Add to cart</Button>
+                    <Button onClick={() => addProductToCard(product)} className='addToCart' variant="warning">Add to cart</Button>
                     <Link className='btn btn-success addToCart' variant='success' 
                     to={`products/${product.product_id}`} state={product}>More Details</Link>
                     {/* <Button className='addToCart' variant="success">More Details</Button> */}

@@ -1,7 +1,7 @@
 import {validate} from './validations.js'
 
   export const formData = {
-        username:{
+        user_name:{
           id:'1',
           type:'text',
           name:'Username',
@@ -9,7 +9,7 @@ import {validate} from './validations.js'
           value:'',
           validations:{
             required:true,
-            minLength: 2,
+            minLength: 4,
           },
           errors: []
         },
@@ -38,7 +38,7 @@ import {validate} from './validations.js'
           },
           errors: []
         },
-        firstName:{
+        first_name:{
           id:'1',
           type:'text',
           name:'First Name',
@@ -50,7 +50,7 @@ import {validate} from './validations.js'
           },
           errors: []
         },
-        lastName:{
+        last_name:{
           id:'1',
           type:'text',
           name:'Last Name',
@@ -86,20 +86,32 @@ import {validate} from './validations.js'
           },
           errors: []
         },
-        address:{
+        city : {
           id:'6',
+          type:'text',
+          name:'City',
+          placeholder:'Enter your City here',
+          value:'',
+          validations:{
+            required:true,
+            minLength:3
+          },
+          errors: []
+        },
+        address:{
+          id:'7',
           type:'text',
           name:'Address',
           placeholder:'Enter your address here',
           value:'',
           validations:{
             required:true,
-            minLength: 15
+            minLength: 10
           },
           errors: []
         },
         birthday:{
-          id:'7',
+          id:'8',
           type:'date',
           name:'Birthday',
           value:'',
@@ -111,15 +123,8 @@ import {validate} from './validations.js'
         }
       }
   export function inputsHandler({target:{name,value}}, setData, data){
-      data[name].value=value
-      if (name === 'confirmPassword'){
-        data[name].errors = validate(name, value, data[name].validations, data.password.value)
-        console.log('pass1')
-      }
-      else if (name === 'confirmEmail'){
-        data[name].errors = validate(name, value, data[name].validations, data.email.value)
-      }
-      else data[name].errors = validate(name, value, data[name].validations)
+      data[name].value = value
+      data[name].errors = validate(name, value, data[name].validations, data)
       setData({...data})
       if(data[name].errors.length > 0) return false
       return true
@@ -128,12 +133,13 @@ import {validate} from './validations.js'
   export function validateForm(setData, data) {
       let notValid = false
       for(let input in data){
-      data[input].errors = validate(input ,data[input].value, data[input].validations)
-      if(data[input].errors.length) {
-        notValid = true
+        data[input].errors = validate(input ,data[input].value, data[input].validations, data)
+        if(data[input].errors.length) {
+          notValid = true
+          }
         }
-        setData({...data})
-      }
+      setData({...data})
+      return notValid
     }
     
 

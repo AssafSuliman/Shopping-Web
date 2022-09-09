@@ -1,0 +1,40 @@
+#cartTitle{
+  margin-top:120px;
+  margin-bottom: 50px ;
+}
+#cartPage{
+  display :flex;
+  flex-direction: column;
+}
+
+.cartProducts{
+  display:flex; 
+  flex-direction: column; 
+  justify-content: space-between
+}
+
+.cartProductPrice{
+  font-size: 30px;
+}
+
+
+.cartCard {
+  margin-bottom: 50px ;
+}
+
+#totalPrice{
+  align-self: flex-end;
+  width: fit-content;
+  text-align: center;
+}
+
+#checkOut{
+  font-size: 30px;
+  margin-bottom: 30px;
+  border-radius: 50px;
+}
+
+#emptyMessage{
+  text-align: center;
+  margin-bottom: 500px;
+}

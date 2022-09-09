@@ -2,7 +2,7 @@ import  {Col, Row, Form, InputGroup}  from 'react-bootstrap'
 
 function InputText ({setData, data, inputsHandler}) {
     return (
-        <div>
+        <>
         {Object.keys(data).map((input, index) =>
             <Col key={index} className='loginInput' >
               <Form.Label htmlFor={input}>
@@ -19,7 +19,7 @@ function InputText ({setData, data, inputsHandler}) {
                   {error}
                   </span>))}
             </Col>)}
-        </div>
+        </>
     )
 }
 

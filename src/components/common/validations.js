@@ -1,19 +1,19 @@
 
-export const validate = (name, value, validations, matchingValue) => {
+export const validate = (name, value, validations, data) => {
     //console.log(name, value, matchingValue)
     
     const errors = []
 
     //validations
     if(!value && validations.required) {
-        errors.push(`*${name} is required`)
+        errors.push(`*Field is required`)
         //1- validate
         //2- add to errros if invalid
 
         // errors.push(`${name} is required`)
     }
     if(validations.minLength && validations.minLength > value.length) {
-        errors.push(`*${name} must be atleast ${validations.minLength} characters`)
+        errors.push(`*Must be atleast ${validations.minLength} characters`)
         //1- validate
         //2- add to errros if invalid
     }
@@ -25,8 +25,11 @@ export const validate = (name, value, validations, matchingValue) => {
         }
         else errors.push(`*${name} not valid!`)
     }
-    if(validations.matching && value != matchingValue){
-        errors.push(`Field not matching`)
+    if(validations.matching){
+        if(name === 'confirmPassword' && value != data.password.value
+            || name === 'confirmEmail' && value != data.email.value){
+            errors.push(`Fields not matching`)
+        }
     }
     if(validations.age){
         const dateEntered = new Date(value)
