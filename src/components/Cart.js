@@ -3,13 +3,14 @@ import '../styles/Cart.css'
 import Footer from './Footer'
 import { useState, useEffect} from 'react'
 import { getCart, products, removeFromCart } from '../DAL/api'
+import Checkout from './Checkout'
 
 function Cart () {
   //const product = products[0]
   let totalPrice = 0
+  const [showCheckout, setShowCheckout] = useState(false);
   let [cart, setCart] = useState([])
-  let [images, setImages] = useState([])
-
+  
   async function gettingCart () {
     cart = await getCart()
     setCart([...cart])
@@ -34,10 +35,9 @@ function Cart () {
   }
 
   const createProduct = (product) => {
-    totalPrice += product.price
-    console.log(totalPrice);
+    totalPrice += product.price * product.amount
     return (
-      <Card className='cartCard'>
+      <Card key={product.product_id} className='cartCard'>
         <Card.Body>
           <Row>
             <Col lg={3}>
@@ -47,11 +47,15 @@ function Cart () {
               <Card.Title>{product.product_name}</Card.Title>
               <Card.Text>
                 {product.description.slice(0, 100)}...
+                
               </Card.Text>
+              
               {/* <button className='btn btn-danger btn-sm' style={{ width: "1.5rem", borderRadius: "5px", marginRight: "1%" }} onClick={() => decrease()} >-</button>
               <input type="number" value={currentOrderDetails.quantity || ''}style={{ width: "1.5rem", borderRadius: "10px" }} onChange={(e) => console.log(e.target.value)}></input>
               <button className='btn btn-danger btn-sm' style={{ width: "1.5rem", borderRadius: "5px", marginLeft: "1%" }} onClick={() => increase()}>+</button> */}
               <Card.Text className='cartProductPrice'>
+                <span>Amount: {product.amount}</span>
+                <br></br>
                 Price: {product.price}$
               </Card.Text>
               <Button onClick={() => removeProduct(product)} variant="warning">Remove from Cart</Button>
@@ -70,7 +74,10 @@ function Cart () {
         {cart.map(product => createProduct(product))}
       {cart.length > 0 ?<div id='totalPrice'>
         <h3 >Total Price: {totalPrice}$</h3>
-        <Button id='checkOut' variant="dark" >Checkout</Button>
+        <Button onClick={() => setShowCheckout(true)}
+        id='checkOut' variant="dark" >Checkout</Button>
+        <Checkout show={showCheckout} close={() => setShowCheckout(false)}
+          cart={cart} total={totalPrice} gettingCart={gettingCart}></Checkout>
       </div>
       :<h2 id='emptyMessage'> You cart is empty. </h2>}
       </Container>
