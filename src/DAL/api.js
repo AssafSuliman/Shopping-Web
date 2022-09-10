@@ -123,10 +123,21 @@ export const addToCart = async (product_id) => {
 
 export const removeFromCart = async (productId) => {
     await fetch(`http://localhost:3000/cart/${productId}`, {
-      credentials: 'include',
-      method: "DELETE"
+        credentials: 'include',
+        method: "DELETE"
     })
     return 
+}
+
+export const newOrder = async (order) => {
+    const response = await fetch('http://localhost:3000/orders', {
+        credentials: 'include',
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(order)
+        })
+    return await response.json()
+    
 }
 
 export const getProducts = async () => {
