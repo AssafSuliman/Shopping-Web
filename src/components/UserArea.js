@@ -21,14 +21,13 @@ function UserArea () {
   
   async function getUser () {
     user = await getCustomer()
-    console.log(user);
     setUser({...user})
   }
 
   useEffect(() => {
     getUser()
   }, [])
-  console.log(editData);
+
   const createDetails = () => {
     return (
     Object.keys(user).map((detail, index) => detail != 'user_name'?
