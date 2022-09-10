@@ -129,6 +129,14 @@ export const removeFromCart = async (productId) => {
     return 
 }
 
+export const getOrders = async () => {
+    const response = await fetch('http://localhost:3000/orders', {
+        credentials: 'include',
+    })
+    const orders = await response.json()
+    return orders
+}
+
 export const newOrder = async (order) => {
     const response = await fetch('http://localhost:3000/orders', {
         credentials: 'include',

@@ -1,3 +1,26 @@
 #ordersPage{
     margin-top: 150px;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+}
+
+.order{
+    margin-top: 50px;
+    margin-bottom: 30px;
+    /* width:1000px */
+}
+
+.orderHeader {
+    display: flex;
+    flex-direction: row;
+}
+
+.orderHeaderDetails{
+    font-weight: bold;
+}
+
+.orderImg {
+    width:150px;
+    height: 150px;
 }
