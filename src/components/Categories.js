@@ -48,7 +48,7 @@ function Categories () {
             <h2 id="categoryTitle">{currentCategory?.category_name}</h2>
           <Container fluid className='categoryProducts'>
               {categoryProducts.map(product =>
-                <ProductCard product={product}></ProductCard>)}
+                <ProductCard key={product.product_id} product={product}></ProductCard>)}
           </Container>
         </Col>
       </Row>
