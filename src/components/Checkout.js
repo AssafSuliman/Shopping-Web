@@ -45,8 +45,9 @@ function Checkout({show, close, cart, total, product, gettingCart}) {
       }
       const response = await newOrder(order)
       if(response) {
-        alert('Your order has been made')
         if(cart) gettingCart()
+        else window.location.reload()
+        alert('Your order has been made')
       }
       else {
         alert('The order couldnt be made')
@@ -91,9 +92,9 @@ function Checkout({show, close, cart, total, product, gettingCart}) {
             </tr>)
           : <tr>
               <td>{1}</td>
-              <td>{product.product_name}</td>
+              <td>{product?.product_name}</td>
               <td>{1}</td>
-              <td>{product.price}$</td>
+              <td>{product?.price}$</td>
             </tr>}
           </tbody>
         </Table>
@@ -134,7 +135,7 @@ function Checkout({show, close, cart, total, product, gettingCart}) {
         <p style={{fontSize:'20px', marginTop:'20px'}}>
           *Delivery time up to 3 days<br></br>
         </p>
-        <h2 style={{textAlign:'end'}}>Summary : {total? total:product.price }$</h2>
+        <h2 style={{textAlign:'end'}}>Summary : {total? total:product?.price }$</h2>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => {

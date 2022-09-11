@@ -33,6 +33,7 @@ function Signup () {
 				'birthday':signupData.birthday.value
 			}
 			await signup(customer)
+			alert('You have registered successfully')
 			navigate('/login')
 		}
 	} 

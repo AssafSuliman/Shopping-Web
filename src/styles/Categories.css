@@ -1,0 +1,28 @@
+.categoryPage {
+  margin-top: 150px;
+  
+}
+
+.categoriesList{
+  text-align: center;
+  padding: 20px;
+  font-weight: bold;
+}
+
+.categoriesList:hover{
+  cursor: pointer;
+  background-color: ghostwhite
+}
+
+.categoryProducts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#categoryTitle{
+  width: fit-content;
+  margin-left: 65px;
+  border-radius: 5px;
+
+}

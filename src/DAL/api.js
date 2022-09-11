@@ -5,43 +5,39 @@ const categories = [{id: 1, name: 'Work Tables'},
 {id:5, name: 'Gardening Tools'}]
 
 export const products = [{id: 1, categoryId: 2, productName:`Bosch Circular SAW 9" GKS235`,
-description: `Two sights for increased cutting precision.
-Base can be tilted up to 48°; sturdy, steel base plate with dual attachment 
-Optimised chip removal system.`,
+description: `Two sights for increased cutting precision.Base can be tilted up to 48°; sturdy, 
+steel base plate with dual attachment Optimised chip removal system.`,
 unitsInStock: 4, price: 130, unitsSold: 11},
 {id: 2, categoryId: 2, productName: `DeWalt Reciprocating SAW DW311K-LX`,
-description: `1200 Watt motor delivers increased power for heavy duty applications.
-Keyless stainless steel blade clamp for quick and easy blade changes and increased reliability.
+description: `1200 Watt motor delivers increased power for heavy duty applications. 
+Keyless stainless steel blade clamp for quick and easy blade changes and increased reliability. 
 0-2,600 SPM and 28 mm stroke length for fast and efficient cutting.`,
 unitsInStock: 2, price: 150, unitsSold: 9},
 {id: 3, categoryId: 2, productName: `Dewalt Impact Driver`,
 description: `At less than 4 in. in length, the Atomic 20V MAX* 1/4 in.
-Brushless Cordless 3-Speed Impact Driver can handle tight applications like narrow cabinetry or framing without the need for an additional tool.
-Though the Impact Driver is lightweight and compact in size, 
-it does not sacrifice performance with its brushless motor that delivers up to 1,825 in-lb of torque 
-and 3,250 rpm for driving large-diameter screws. 
-Illuminate dim workspaces for enhanced visibility with the 3-LED on-board work light 
-and keep your workflow consistent. Be ready for almost any fastening job with the included contractor bag,
-charger, and 20V MAX* 5.0Ah battery.`,
+Brushless Cordless 3-Speed Impact Driver can handle tight applications like narrow cabinetry
+or framing without the need for an additional tool.Though the Impact Driver is lightweight and compact in size,
+it does not sacrifice performance with its brushless motor that delivers up to 
+1,825 in-lb of torque and 3,250 rpm for driving large-diameter screws. Illuminate dim workspaces 
+for enhanced visibility with the 3-LED on-board work light and keep your workflow consistent. 
+Be ready for almost any fastening job with the included contractor bag, charger, and 20V MAX* 5.0Ah battery.`,
 unitsInStock: 8, price: 238, unitsSold: 2},
 {id: 4, categoryId: 3, productName: `DeWalt 12" Medium Trigger Clamp`,
 description: `The 12-inch medium bar clamp is versatile and easy to use. 
 Its reinforced nylon body and heat-treated steel bar are strong and durable.
-With 100-pounds of clamping force, 2-7/16" throat depth, 
-and removable jaw pads to help reduce marring, 
+With 100-pounds of clamping force, 2-7/16" throat depth, and removable jaw pads to help reduce marring,
 this clamp was built to exceed the expectations of professional contractors.`,
 unitsInStock: 25, price: 41, unitsSold: 8},
 {id: 5, categoryId: 4, productName: `DeWalt 24 in Box Beam Level`,
-description:`The 24" Non-Magnetic Box Beam Level is ideal to have for a variety of professions.
-The level features a large cross section, block vials, magnified center vial, 
-robust metal + over-mold end caps, die-cast center vial holder and a bridged center vial.`,
+description:`The 24" Non-Magnetic Box Beam Level is ideal to have for a variety of professions. 
+The level features a large cross section, block vials, magnified center vial, robust metal + over-mold end caps, 
+die-cast center vial holder and a bridged center vial.`,
 unitsInStock: 17, price: 23, unitsSold: 3},
 {id: 6, categoryId: 5, productName: `Fiskars 28” Tree Trimmer`,
-description: `Long-lasting and reliable: Steel blade stays sharp through heavy use and provides 
-excellent durability for lasting value. Fiskars pruning shears and tools are built to last 
-and backed by a full lifetime warranty.
-Maximum power and precision: Low-friction blade coating makes cutting smooth, 
-reduces gumming and enhances rust resistance; Non-slip grip handle allows for more control of clippers`,
+description: `Long-lasting and reliable: Steel blade stays sharp through heavy use and provides excellent durability for lasting value.
+ Fiskars pruning shears and tools are built to last and backed by a full lifetime warranty.Maximum power and precision: 
+ Low-friction blade coating makes cutting smooth, reduces gumming and enhances rust resistance; 
+ Non-slip grip handle allows for more control of clippers`,
 unitsInStock: 5, price: 31, unitsSold: 5}]
 
 const images = [{id:1, productId: 1, imageSrc: 'https://th.bing.com/th/id/OIP.clZWUJkNJDFRa1V1JaLgHgHaFj?pid=ImgDet&rs=1'},
@@ -68,12 +64,16 @@ const customers = [{id:1, username:'Asaf45', password:'123456', firstName: 'Assa
 email:'Asafaaaad2@gmail.com', address:'Moshav Ahihud Number 44',
 birthday:'01/03/1996'}]
 
-export const getCategories = () => {
-    //fetch categories from server
-    //return Promise.resolve(categories)
-    return new Promise((resolve, reject) => {
-        setTimeout(() => resolve(categories), 1000)
-    })    
+export const getCategories = async () => {
+    const response = await fetch('http://localhost:3000/products/categories')
+    const categories = await response.json()   
+    return categories
+}
+
+export const getProductsByCategoryId = async (categoryId) => {
+    const response = await fetch(`http://localhost:3000/products/category/${categoryId}`)
+    const products = await response.json()
+    return products
 }
 
 export const signup = async (customer) => {
@@ -105,7 +105,6 @@ export const logOut = async () => {
 export const checkCustomer = async () => {
     const response = await fetch("http://localhost:3000/customers/logged", {credentials:'include'})
     const boolean = await response.json()
-    console.log(boolean);
     return boolean
 }
 
@@ -154,10 +153,10 @@ export const getProducts = async () => {
     const data = await response.json()
     return data
 }
-export const getProductByID = (productId) => {
-    return new Promise((resolve, reject) => {
-        resolve(products.find(product => product.id === productId))
-    })
+export const getProductByID = async (productId) => {
+    const response = await fetch(`http://localhost:3000/products/${productId}`)
+    const product = response.json()
+    return product
 }
 export const getProductsByCategory = (categoryId) => {
     return new Promise((resolve, reject) => {
@@ -169,28 +168,8 @@ export const getImages = async () => {
     const data = await response.json()
     return data
 }
-export const getImagesByCategoryId = (getCategoryId) => {
-    return new Promise((resolve, reject) => {
-        const filteredImages = []
-        for(let image of images){
-            if(image.categoryId === getCategoryId){
-                filteredImages.push(image.src)
-            }
-        }
-        resolve(filteredImages)
-    })
-}
-export const getImagesByProductId = (getProductId) => {
-    return new Promise((resolve, reject) => {
-        const filteredImages = []
-        for (let image of images){
-            if(image.productId === getProductId){
-                filteredImages.push(image.imageSrc)
-            }
-        }
-        resolve(filteredImages)
-    })
-}
+
+
 export const getBestSellers = () => {
     return new Promise((resolve, reject) => {
     setTimeout(() => resolve(), 1000)

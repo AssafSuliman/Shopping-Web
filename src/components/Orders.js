@@ -22,7 +22,7 @@ function Orders () {
     <>
       <Container id='ordersPage'>
         <h1>Your Orders</h1>
-        {orders.map(order => 
+        {orders.length> 0? orders.map(order => 
           <Card className='order' key={order.id}>
           <Card.Header className='orderHeader'>
             <div>
@@ -54,7 +54,8 @@ function Orders () {
           </Row>
           </>)}
           </Card.Body>
-        </Card>)}
+        </Card>)
+        :<h2 id='emptyOrdersMessage'>You dont have any recent orders</h2>}
       </Container>
     <Footer></Footer>
     </>

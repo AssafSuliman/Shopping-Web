@@ -1,3 +1,42 @@
 .cardImg{
     height:300px
 }
+
+.outOfStockCard {
+    display: block;
+    margin-top: 10px;
+    background-color: rgb(216, 214, 214)
+}
+
+.productCard{
+    margin:20px 2.5%;
+    width:20%;
+}
+@media screen and (min-width: 1900px){
+    .productCard{
+        width:20%;
+    }
+}
+@media screen and  (min-width: 1300px) and (max-width: 1900px) {
+    .productCard{
+        width:28.3%
+    }
+}
+@media screen and  (min-width: 800px) and (max-width: 1300px){
+    .productCard{
+        width:45%
+    }
+}
+@media screen and (max-width: 800px){
+    .productCard{
+        width:95%
+    }
+}
+.cardButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.cardPrice{
+    text-align: center;
+}
