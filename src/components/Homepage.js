@@ -33,22 +33,4 @@ function Homepage () {
   
   export default Homepage
   
-  {/* <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="ProductPageImgs/impact-driver.jpg" />
-      <Card.Body>
-          <Card.Title>Dewalt Impact Driver</Card.Title>
-          <Card.Text>
-          DeWalt Impact driver and drill set comes with a charger and a case
-          </Card.Text>
-          <h3 className='cardPrice'>530₪</h3>
-          <div className='cardButtons'>
-              <Button variant="primary">Buy now</Button>
-              <Button className='addToCart' variant="warning">Add to cart</Button>
-          </div>
-      </Card.Body>
-  </Card> */}
-{/* <div class="item">
-    <img src="ProductPageImgs/impact-driver.jpg" alt=""></img>
-    <p>DeWalt Impact driver and drill set comes with a charger and a case</p>
-    <p class="price">530₪ </p>
-</div> */}
+  

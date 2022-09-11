@@ -1,4 +1,4 @@
-const categories = [{id: 1, name: 'Work Tables'},
+/* const categories = [{id: 1, name: 'Work Tables'},
 {id:2, name: 'Cordless and Electric Tools'},
 {id:3, name: 'Hand Tools'},
 {id:4, name: 'Measuring Tools'},
@@ -62,7 +62,7 @@ const orders = [{id: 1 , productId: 1, customerId: 1}, {id:1, productId: 2, cust
 
 const customers = [{id:1, username:'Asaf45', password:'123456', firstName: 'Assaf', lastName:'Suliman',
 email:'Asafaaaad2@gmail.com', address:'Moshav Ahihud Number 44',
-birthday:'01/03/1996'}]
+birthday:'01/03/1996'}] */
 
 export const getCategories = async () => {
     const response = await fetch('http://localhost:3000/products/categories')
@@ -158,35 +158,7 @@ export const getProductByID = async (productId) => {
     const product = response.json()
     return product
 }
-export const getProductsByCategory = (categoryId) => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => resolve())
-    })
-}
-export const getImages = async () => {
-    const response = await fetch(`http://localhost:3000/images/best-sellers`)
-    const data = await response.json()
-    return data
-}
 
-
-export const getBestSellers = () => {
-    return new Promise((resolve, reject) => {
-    setTimeout(() => resolve(), 1000)
-    })
-}
-export const getOrdersById = (customerId) => {
-    return new Promise((resolve, reject) => {
-        const filteredOrders = []
-        for(let order of orders){
-            if(order.customerId === customerId){
-                filteredOrders.push(order)
-            }
-        }
-        resolve(filteredOrders)
-    })
-
-}
 export const getCustomer = async () => {
     const response = await fetch(`http://localhost:3000/customers`, {credentials:'include'})
     const customer = await response.json()

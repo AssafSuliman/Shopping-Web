@@ -16,7 +16,6 @@ function Categories () {
   async function getAllCategories () {
     categories = await getCategories()
     setCategories([...categories])
-    //console.log(categories, categoryProducts, currentCategory);
   } 
 
   async function getCategoryProducts (id) {
