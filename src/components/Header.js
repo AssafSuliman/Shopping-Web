@@ -20,7 +20,7 @@ function Header () {
     async function getData () {
       customer = await checkCustomer()
       categories = await getCategories()
-        setLoading(false)
+      setLoading(false)
       setCustomer(customer)
       setCategories([...categories])
     } 
@@ -28,7 +28,7 @@ function Header () {
     useEffect(() => {
       getData()
     }, [])
-    //console.log(customer);
+
     return(
       <header>
       {loading? <ClipLoader color={'grey'} cssOverride={override} size={150} />:
@@ -50,8 +50,8 @@ function Header () {
                   Category
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  {categories.map(category => <li key={category.id}><a className="dropdown-item" href="#"
-                  >{category.name}</a></li>)}
+                  {categories.map(category => <Link key={category.category_id} to={`/categories/${category.category_id}`} 
+                  className='dropdown-item'>{category.category_name}</Link>)}
                 </ul>
               </li>
             </ul>

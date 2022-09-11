@@ -24,3 +24,8 @@
     width:150px;
     height: 150px;
 }
+
+#emptyOrdersMessage{
+    text-align: center;
+    margin-bottom: 600px;
+}

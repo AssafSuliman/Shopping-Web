@@ -1,30 +1,45 @@
 import Header from './Header.js'
 import Footer from './Footer.js'
 import '../styles/ProductPage.css'
-import { useLocation, useParams } from 'react-router-dom'
-import {getImagesByProductId, getProductByID} from '../DAL/api.js'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import {addToCart, checkCustomer, getImagesByProductId, getProductByID, products} from '../DAL/api.js'
 import { useState, useEffect} from 'react'
-import { UseParams } from 'react-router-dom'
+import Checkout from './Checkout.js'
+
 
 function ProductPage () {
   /* const location = useLocation()
   const product = location.state */
   let {productId} = useParams()
   productId = Number(productId)
-  let [product, setProduct] = useState({})
-  let [images, setImages] = useState([])
-  console.log(images);
+  let [product, setProduct] = useState()
+  const navigate = useNavigate()
+  const [showCheckout, setShowCheckout] = useState(false);
   
   async function getProductImages () {
     product = await getProductByID(productId)
-    images = await getImagesByProductId(productId)
+    console.log(product);
     setProduct({...product})
-    setImages([...images])
   }
 
   useEffect(() => {
     getProductImages()
   },[])
+
+
+  const checkIfLoggedIn = async (product) => {
+    if(!await checkCustomer()){
+      navigate('/login')
+    }
+    else if(product){
+        await addToCart(product.product_id)
+        alert(`${product.product_name} , has been added to your cart`)
+      }
+    else {
+        setShowCheckout(true)
+      }
+
+  }
 
     return (
     <div>
@@ -40,10 +55,10 @@ function ProductPage () {
               </div>
               <div className="carousel-inner">
                 <div className="carousel-item active">
-                  <img src={images[0]} className="d-block w-100" alt="impact driver and drill"></img>
+                  <img src={product?.images[0].image_src} className="d-block w-100" alt={product?.images[0].image_alt}></img>
                 </div>
-                {images.slice(1,images.length).map((image, index) => <div key={index} className="carousel-item">
-                  <img src={image} className="d-block w-100" alt="drill"></img></div>)}
+                {product?.images.slice(1,product.images.length).map(image => <div key={image.image_id} className="carousel-item">
+                  <img src={image.image_src} className="d-block w-100" alt={image.image_alt}></img></div>)}
                 {/* <div className="carousel-item">
                   <img src={images[2]} className="d-block w-100" alt="impact-driver"></img>
                 </div> */}
@@ -59,15 +74,21 @@ function ProductPage () {
             </div>
           </div>
             <div className="col2 col-lg-6 col-sm-12">
-              <h5 className="card-title">{product.productName}</h5>
+              <h5 className="card-title">{product?.product_name}</h5>
               <div className="line"></div>
               <h6>Description:</h6>
-              <p className="card-text">{product.description}</p>
-              <p className="card-text"><small className="text-muted">cannot be shipped</small></p>
+              <p className="card-text">{product?.description}</p>
+              <p className="card-text"><small className="text-muted">Estimated ship time up to 3 days</small></p>
               <div className="line"></div>
-              <h5>{`Price: ${product.price}$`}</h5>
-              <button type="button" className="btn btn-primary">Buy now!</button>
-              <button type="button" className="btn btn-info">Add to cart</button>
+              <h5>{`Price: ${product?.price}$`}</h5>
+              {product?.units_in_stock > 0 ? 
+              <>
+              <button onClick={() => checkIfLoggedIn()} type="button" className="btn btn-primary">Buy now!</button>
+              <button onClick={() => checkIfLoggedIn(product)} type="button" className="btn btn-info">Add to cart</button>
+              </>
+              : <span>Out of stock</span>}
+              <Checkout show={showCheckout} close={() => setShowCheckout(false)}
+              product={product}></Checkout>
             </div>
           </div>
       </div>
