@@ -26,14 +26,6 @@ function Cart () {
     setCart([...cart])
   }
 
-  const decrease = () => {
-
-  }
-
-  const increase = () => {
-
-  }
-
   const createProduct = (product) => {
     totalPrice += product.price * product.amount
     return (
@@ -50,9 +42,6 @@ function Cart () {
                 
               </Card.Text>
               
-              {/* <button className='btn btn-danger btn-sm' style={{ width: "1.5rem", borderRadius: "5px", marginRight: "1%" }} onClick={() => decrease()} >-</button>
-              <input type="number" value={currentOrderDetails.quantity || ''}style={{ width: "1.5rem", borderRadius: "10px" }} onChange={(e) => console.log(e.target.value)}></input>
-              <button className='btn btn-danger btn-sm' style={{ width: "1.5rem", borderRadius: "5px", marginLeft: "1%" }} onClick={() => increase()}>+</button> */}
               <Card.Text className='cartProductPrice'>
                 <span>Amount: {product.amount}</span>
                 <br></br>
@@ -66,7 +55,7 @@ function Cart () {
     )
       
   }
-
+  
   return (
     <>
       <Container id='cartPage'>
@@ -87,3 +76,11 @@ function Cart () {
 }
 
 export default Cart
+
+
+
+
+
+{/* <button className='btn btn-danger btn-sm' style={{ width: "1.5rem", borderRadius: "5px", marginRight: "1%" }} onClick={() => decrease()} >-</button>
+<input type="number" value={currentOrderDetails.quantity || ''}style={{ width: "1.5rem", borderRadius: "10px" }} onChange={(e) => console.log(e.target.value)}></input>
+<button className='btn btn-danger btn-sm' style={{ width: "1.5rem", borderRadius: "5px", marginLeft: "1%" }} onClick={() => increase()}>+</button> */}

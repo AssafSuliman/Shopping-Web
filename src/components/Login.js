@@ -56,16 +56,3 @@ function Login () {
   export default Login
   
   
-  /*   <Col>
-      <Form.Label htmlFor={key}>
-        {loginData[key].name}
-      </Form.Label>
-      <InputGroup>
-        <InputGroup.Text></InputGroup.Text>
-        <Form.Control id={key} name={key} placeholder={loginData[key].placeholder}
-        type='text' onBlur={inputsHandler} isInvalid={loginData[key].error}/>
-        <Form.Control.Feedback type='invalid'>
-          {loginData[key].error}
-        </Form.Control.Feedback>
-      </InputGroup>
-    < */

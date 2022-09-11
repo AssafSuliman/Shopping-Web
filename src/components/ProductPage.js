@@ -8,8 +8,6 @@ import Checkout from './Checkout.js'
 
 
 function ProductPage () {
-  /* const location = useLocation()
-  const product = location.state */
   let {productId} = useParams()
   productId = Number(productId)
   let [product, setProduct] = useState()
@@ -59,9 +57,6 @@ function ProductPage () {
                 </div>
                 {product?.images.slice(1,product.images.length).map(image => <div key={image.image_id} className="carousel-item">
                   <img src={image.image_src} className="d-block w-100" alt={image.image_alt}></img></div>)}
-                {/* <div className="carousel-item">
-                  <img src={images[2]} className="d-block w-100" alt="impact-driver"></img>
-                </div> */}
               </div>
               <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>

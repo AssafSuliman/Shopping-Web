@@ -37,30 +37,30 @@ function Checkout({show, close, cart, total, product, gettingCart}) {
         cost:total,
         city:orderDetails.city,
         address:orderDetails.address,
-        phone:orderDetails.phone
+        phone:orderDetails.phone,
+        isCart:true
       }
       if(!cart) {
-        order.products = product
+        product.amount = 1
+        order.isCart = false
+        order.products = [product]
         order.cost = product.price
       }
       const response = await newOrder(order)
-      if(response) {
+      if(response === true) {
         if(cart) gettingCart()
         else window.location.reload()
         alert('Your order has been made')
       }
       else {
-        alert('The order couldnt be made')
+        alert(`The order couldnt be made
+          There are ${response[0].amountInStock} units left of ${response[0].name}`)
       }
     }
   }
 
   return (
     <>
-      {/* <Button variant="primary" onClick={handleShow}>
-        Launch static backdrop modal
-      </Button> */}
-
       <Modal
         size="xl"
         show={show}

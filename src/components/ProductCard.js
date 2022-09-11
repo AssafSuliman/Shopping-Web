@@ -8,21 +8,8 @@ import Checkout from './Checkout.js';
 function ProductCard ({product}) {;
     const navigate = useNavigate()
     const [showCheckout, setShowCheckout] = useState(false);
-   
-  
-
-    /* const addProductToCart = async (product) => {
-      if(await checkCustomer()){
-        await addToCart(product.product_id)
-        alert(`${product.product_name} , has been added to your cart`)
-      }
-      else {
-        navigate('/login')
-      }
-    } */
 
     const checkIfLoggedIn = async (product) => {
-  
       if(!await checkCustomer()){
         navigate('/login')
       }
@@ -58,7 +45,6 @@ function ProductCard ({product}) {;
             :''}
             <Link className='btn btn-success addToCart' variant='success' 
             to={`/products/${product.product_id}`} state={product}>More Details</Link>
-                    {/* <Button className='addToCart' variant="success">More Details</Button> */}
           </div>
 
         </Card.Body>

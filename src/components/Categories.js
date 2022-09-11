@@ -4,6 +4,7 @@ import '../styles/Categories.css'
 import { useLocation, useParams } from 'react-router-dom'
 import { getCategories, getProductsByCategoryId } from '../DAL/api'
 import ProductCard from './ProductCard'
+import Footer from './Footer'
 
 function Categories () {
 
@@ -34,7 +35,7 @@ function Categories () {
   }, [categoryId])
 
   return (
-    
+    <>
       <Row className='categoryPage'>
         <Col lg={2}>
           <ul className="list-group list-group-flush">
@@ -50,7 +51,9 @@ function Categories () {
                 <ProductCard product={product}></ProductCard>)}
           </Container>
         </Col>
-      </Row>  
+      </Row>
+      <Footer></Footer>
+    </>
    
     
   )

@@ -165,7 +165,3 @@ export const getCustomer = async () => {
     return customer
 
 }
-
-
-//component
-// await getCategories()

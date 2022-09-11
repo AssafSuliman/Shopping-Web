@@ -55,7 +55,6 @@ function UserArea () {
 
     return (
         <div>
-          {/* <Header></Header> */}
             <Container id='userArea'>
                 <h1 id='accountTitle'>Your Account</h1>
               <div id='accountContent'>
