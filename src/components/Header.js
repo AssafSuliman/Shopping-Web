@@ -20,10 +20,7 @@ function Header () {
     async function getData () {
       customer = await checkCustomer()
       categories = await getCategories()
-      if(customer != 'undefined'){
         setLoading(false)
-      }
-
       setCustomer(customer)
       setCategories([...categories])
     } 

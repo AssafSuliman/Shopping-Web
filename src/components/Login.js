@@ -29,7 +29,7 @@ function Login () {
         navigate('/')
         window.location.reload()
       }
-      else alert('User not exist')
+      else alert('User or password inccorect')
 
     }
   }

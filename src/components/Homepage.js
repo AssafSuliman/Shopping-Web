@@ -9,13 +9,10 @@ import { useState, useEffect} from 'react'
 
 function Homepage () {
   let [products, setProducts] = useState([])
-  let [images, setImages] = useState([])
   
   async function getData () {
     products = await getProducts()
-    images = await getImages()
     setProducts([...products])
-    setImages([...images])
   }
   useEffect(() => {
       getData()
@@ -26,8 +23,7 @@ function Homepage () {
         <main id='homepage'>
             <h1>Best Sellers</h1>
             {products.map(product => 
-            <ProductCard key={product.product_id} product={product} 
-              image={images.find(image => image.product_id === product.product_id).image_src}>
+            <ProductCard key={product.product_id} product={product}>
             </ProductCard>)}
         </main>
         <Footer></Footer>

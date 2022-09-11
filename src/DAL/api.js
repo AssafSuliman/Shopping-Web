@@ -105,6 +105,7 @@ export const logOut = async () => {
 export const checkCustomer = async () => {
     const response = await fetch("http://localhost:3000/customers/logged", {credentials:'include'})
     const boolean = await response.json()
+    console.log(boolean);
     return boolean
 }
 
